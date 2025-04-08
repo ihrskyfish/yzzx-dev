@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>datareq</name>
+	<targetPath></targetPath>
+	<filePath>src/main/java/${packageName}/dto</filePath>
+	<fileName>${EntityName}Req.java</fileName>
+	<content><![CDATA[
+package ${packageName}.dto;
+
+import ${packageName}.entity.${EntityName};
+import lombok.Data;
+
+
+/**
+ * @描述: ${table.comments}Req
+ * @Author: wocai
+ * @Date: ${.now?string["yyyy-MM-dd"]}
+ * @Version: V1.0
+ */
+@Data
+public class ${EntityName}Req extends ${EntityName} {
+
+
+}]]>
+	</content>
+</template>

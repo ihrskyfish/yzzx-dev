@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wocai.platform.modules.business.display.mapper.MmccServiceUserMapper">
+
+    <select id="queryPage" parameterType="hashmap" resultType="com.wocai.platform.modules.business.display.vo.MmccServiceUserRes">
+        select t.* from mmcc_service_user t where t.del_flag = 0 order by t.create_time desc
+    </select>
+    <select id="reservationRecord"
+            resultType="com.wocai.platform.modules.business.book.vo.ReservationRecordVo">
+        SELECT
+            u.id,
+            d.id as displayId,
+            d.name,
+            u.status,
+            u.user_name,
+            u.user_phone,
+            u.scheduled_time,
+            u.pickup
+        FROM
+            mmcc_service_user u
+                INNER JOIN mmcc_service_display d ON u.display_id = d.id
+        WHERE
+            u.del_flag = 0
+          AND d.del_flag =0
+        <if test="m.userName !=null and m.userName!=''">
+            AND u.user_name like CONCAT('%',#{m.userName },'%')
+        </if>
+        <if test="m.userPhone !=null and m.userPhone!=''">
+            AND u.user_phone like CONCAT('%',#{m.userPhone},'%')
+        </if>
+        <if test="m.userId !=null and m.userId!=''">
+            AND u.user_id=#{m.userId}
+        </if>
+        order by u.create_time desc
+    </select>
+    <select id="evaluationRecordsVo"
+            resultType="com.wocai.platform.modules.business.book.vo.BookEvaluationRecordsVo">
+        SELECT
+            u.id,
+            d.id AS displayId,
+            d.NAME,
+            u.user_name,
+            u.user_phone,
+            u.evaluate_time,
+            u.evaluate_content
+        FROM
+            mmcc_service_user u
+                INNER JOIN mmcc_service_display d ON u.display_id = d.id
+        WHERE
+            u.del_flag = 0
+          AND d.del_flag = 0
+          AND u.STATUS =2
+    </select>
+
+</mapper>

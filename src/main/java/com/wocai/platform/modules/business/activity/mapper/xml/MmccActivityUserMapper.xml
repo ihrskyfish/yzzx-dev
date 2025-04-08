@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wocai.platform.modules.business.activity.mapper.MmccActivityUserMapper">
+
+    <select id="queryPage" parameterType="hashmap" resultType="com.wocai.platform.modules.business.activity.vo.MmccActivityUserRes">
+        select t.* from mmcc_activity_user t where t.del_flag = 0
+    </select>
+
+</mapper>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>serviceimpl</name>
+	<filePath>src/main/java/${packageName}/${moduleName}/${subModuleName}/service/impl</filePath>
+	<fileName>${ClassName}ServiceImpl.java</fileName>
+	<content><![CDATA[
+package ${packageName}.${moduleName}.${subModuleName}.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.wocai.platform.common.constant.CommonConstant;
+import com.wocai.platform.common.exception.BizException;
+import ${packageName}.${moduleName}.${subModuleName}.entity.${EntityName};
+import ${packageName}.${moduleName}.${subModuleName}.dto.${EntityName}Req;
+import ${packageName}.${moduleName}.${subModuleName}.vo.${EntityName}Res;
+import ${packageName}.${moduleName}.${subModuleName}.mapper.${EntityName}Mapper;
+import ${packageName}.${moduleName}.${subModuleName}.service.I${EntityName}Service;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+
+import com.wocai.platform.common.system.base.service.impl.BaseServiceImpl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @Description: ${functionName}
+ * @Author: ${functionAuthor}
+ * @Date: ${.now?string["yyyy-MM-dd"]}
+ * @Version: V1.0
+ */
+@Service
+public class ${EntityName}ServiceImpl extends BaseServiceImpl<${EntityName}Mapper, ${EntityName}> implements I${EntityName}Service {
+    
+    @Override
+    public IPage<${EntityName}Res> queryPageList(IPage<${EntityName}Res> page, ${EntityName}Req ${EntityName?uncap_first}Req) {
+        Map<String, Object> reqParam = new HashMap<>();
+        IPage<${EntityName}Res> resultList = this.baseMapper.queryPage(page, reqParam);
+        return resultList;
+    }
+
+    @Override
+    public boolean doDuplicateCheck(${EntityName}Req ${EntityName?uncap_first}Req) {
+        return false;
+    }
+
+    @Override
+    public void saveMain(${EntityName}Req ${EntityName?uncap_first}Req) {
+        this.doDuplicateCheck(${EntityName?uncap_first}Req);
+        ${EntityName} ${EntityName?uncap_first} = new ${EntityName}();
+        BeanUtils.copyProperties(${EntityName?uncap_first}Req, ${EntityName?uncap_first});
+        this.save(${EntityName?uncap_first});
+    }
+
+    @Override
+    public void updateMain(${EntityName}Req ${EntityName?uncap_first}Req) {
+        ${EntityName} ${EntityName?uncap_first} = this.getById(${EntityName?uncap_first}Req.getId());
+        if (${EntityName?uncap_first} == null || CommonConstant.DEL_FLAG_1.equals(${EntityName?uncap_first}.getDelFlag())) {
+            throw new BizException("数据不存在");
+        }
+        this.doDuplicateCheck(${EntityName?uncap_first}Req);
+        BeanUtils.copyProperties(${EntityName?uncap_first}Req, ${EntityName?uncap_first});
+        this.updateById(${EntityName?uncap_first});
+    }
+
+    @Override
+    public ${EntityName}Res getMainById(String id) {
+        ${EntityName}Res result = new ${EntityName}Res();
+        ${EntityName} ${EntityName?uncap_first} = this.getById(id);
+        if (${EntityName?uncap_first} == null || CommonConstant.DEL_FLAG_1.equals(${EntityName?uncap_first}.getDelFlag())) {
+            throw new BizException("数据不存在");
+        }
+        BeanUtils.copyProperties(${EntityName?uncap_first}, result);
+        return result;
+    }
+
+    @Override
+    public void batchDelete(String ids) {
+        String[] idList = ids.split(",");
+        for (String id : idList) {
+            ${EntityName} ${EntityName?uncap_first} = this.getById(id);
+            if (${EntityName?uncap_first} == null) {
+                throw new BizException("数据不存在");
+            }
+        }
+        LambdaQueryWrapper<${EntityName}> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.in(${EntityName}::getId, idList);
+        ${EntityName} ${EntityName?uncap_first} = new ${EntityName}();
+        ${EntityName?uncap_first}.setDelFlag(CommonConstant.DEL_FLAG_1);
+        this.update(${EntityName?uncap_first}, queryWrapper);
+    }
+    
+    
+}
+]]>
+	</content>
+</template>

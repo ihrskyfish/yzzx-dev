@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <name>dao</name>
+    <targetPath></targetPath>
+    <filePath>src/main/java/${packageName}/mapper</filePath>
+    <fileName>${EntityName}Mapper.java</fileName>
+    <content><![CDATA[
+package ${packageName}.mapper;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import ${packageName}.entity.${EntityName};
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import ${packageName}.vo.${EntityName}Res;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
+
+/**
+ * @描述: ${table.comments}
+ * @Author: wocai
+ * @Date: ${.now?string["yyyy-MM-dd"]}
+ * @Version: V1.0
+ */
+public interface ${EntityName}Mapper extends BaseMapper<${EntityName}> {
+
+    IPage<${EntityName}Res> queryPage(IPage<${EntityName}Res> page, @Param("m") Map<String, Object> reqParam);
+
+}]]>
+    </content>
+</template>

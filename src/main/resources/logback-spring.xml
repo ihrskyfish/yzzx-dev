@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<contextName>wc-template-api</contextName>
+	<property name="log.path" value="log" />
+	<property name="log.maxHistory" value="15" />
+	<property name="log.colorPattern" value="%d{yyyy-MM-dd HH:mm:ss} | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen(%logger) | %msg%n"/>
+	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n" />
+	<springProperty scope="context" name="APPID" source="appId" />
+
+	<!--输出到控制台-->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${log.colorPattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!--输出到文件-->
+	<appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/info/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<MaxHistory>${log.maxHistory}</MaxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<springProfile name="dev">
+		<!--logstash日志收集-->
+		<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+			<destination>192.168.1.22:19002</destination>
+			<encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+				<customFields>{"serviceId":"${APPID}"}</customFields>
+			</encoder>
+		</appender>
+	</springProfile>
+
+	<springProfile name="test">
+		<!--logstash日志收集-->
+		<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+			<destination>192.168.1.22:19002</destination>
+			<encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+				<customFields>{"serviceId":"${APPID}"}</customFields>
+			</encoder>
+		</appender>
+	</springProfile>
+
+	<springProfile name="prod">
+		<!--logstash日志收集-->
+		<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+			<destination>log.zjwocai.com:19002</destination>
+			<encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+				<customFields>{"serviceId":"${APPID}"}</customFields>
+			</encoder>
+		</appender>
+	</springProfile>
+
+	<appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/error/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<MaxHistory>${log.maxHistory}</MaxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<root level="error">
+		<appender-ref ref="LOGSTASH" />
+	</root>
+	<root level="debug">
+		<appender-ref ref="console" />
+		<appender-ref ref="LOGSTASH" />
+	</root>
+
+	<logger name="io.swagger.models.parameters.AbstractSerializableParameter" level="ERROR" />
+	<logger name="springfox.documentation.spring.web.readers.operation" level="ERROR" />
+	<logger name="com.baidu.aip.client.BaseClient" level="ERROR" />
+	<logger name="com.wocai.platform.feignclient" level="DEBUG" />
+	<root level="info">
+		<appender-ref ref="file_info" />
+		<appender-ref ref="file_error" />
+		<appender-ref ref="LOGSTASH" />
+	</root>
+</configuration>

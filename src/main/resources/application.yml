@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+swagger:
+  production: false
+  basic:
+    enable: true
+    username: wocai
+    password: wocaiadmin
+
+#应用ID
+appId: mmcc-api

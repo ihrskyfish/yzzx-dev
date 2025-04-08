@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wocai.platform.modules.business.display.mapper.MmccServicePersonMapper">
+
+    <select id="queryPage" parameterType="hashmap" resultType="com.wocai.platform.modules.business.display.vo.MmccServicePersonRes">
+        select t.* from mmcc_service_person t where t.del_flag = 0
+        <if test="m.name !=null and m.name !=''">
+            and t.name like CONCAT('%',#{m.name},'%')
+        </if>
+        order by t.update_time desc
+    </select>
+
+</mapper>

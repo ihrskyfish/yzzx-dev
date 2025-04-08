@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wocai.platform.modules.business.activity.mapper.MmccActivityMapper">
+
+    <select id="queryPage" parameterType="hashmap"
+            resultType="com.wocai.platform.modules.business.activity.vo.MmccActivityRes">
+        SELECT
+        t.*
+        FROM
+        mmcc_activity t
+        WHERE
+        t.del_flag = 0
+        <if test="m.name !=null and m.name !=''">
+            and t.name like CONCAT('%',#{m.name},'%')
+        </if>
+        ORDER BY
+        t.create_time DESC
+    </select>
+    <select id="activityUserList"
+            resultType="com.wocai.platform.modules.business.activity.vo.MmccActivityUserListVo">
+        SELECT au.id,
+               au.activity_id as activityId,
+               au.user_id     as userId,
+               u.nick_name    as nickName,
+               u.phone        as userPhone,
+               a.`name`,
+               a.start_time   as startTime,
+               a.end_time     as endTime,
+               a.end_state    as endState,
+               au.create_time as createTime
+        FROM mmcc_activity_user au
+                 INNER JOIN mmcc_activity a ON au.activity_id = a.id
+                 INNER JOIN app_user u ON au.user_id = u.id
+        WHERE au.del_flag = 0
+          AND au.activity_id = #{id}
+          AND a.del_flag = 0
+          AND u.del_flag = 0
+
+    </select>
+
+</mapper>

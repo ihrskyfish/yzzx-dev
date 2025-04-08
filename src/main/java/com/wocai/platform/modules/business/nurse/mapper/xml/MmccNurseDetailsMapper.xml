@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wocai.platform.modules.business.nurse.mapper.MmccNurseDetailsMapper">
+
+    <select id="queryPage" parameterType="hashmap" resultType="com.wocai.platform.modules.business.nurse.vo.MmccNurseDetailsRes">
+        select t.* from mmcc_nurse_details t where t.del_flag = 0 ORDER BY create_time desc
+    </select>
+    <select id="getRecommendDetails" resultType="com.wocai.platform.modules.app.nurse.vo.AppNurseDetailsVo">
+        SELECT
+        d.*
+        FROM
+        mmcc_nurse_details d
+        INNER JOIN mmcc_nurse_type t ON d.type_id = t.id
+        WHERE
+        t.del_flag = 0
+        AND d.del_flag = 0
+        AND d.recommend = 1
+        AND t.`status` =1
+        AND state_week &lt;=  #{gestationalWeek}
+        AND end_week &gt;= #{gestationalWeek}
+        ORDER BY d.create_time desc
+    </select>
+
+</mapper>

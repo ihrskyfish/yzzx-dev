@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<!-- 生成分类 -->
+	<category>
+		<category id="CRUD" text="增删改查（单表）">
+			<template>crud/controller.xml</template>
+			<template>crud/modal.xml</template>
+			<template>crud/service.xml</template>
+			<template>crud/serviceimpl.xml</template>
+			<template>crud/vue.xml</template>
+		</category>
+		<category id="DAO" text="mybatis代码">
+			<template>dao/entity.xml</template>
+			<template>dao/dao.xml</template>
+			<template>dao/mapping.xml</template>
+			<template>dao/req.xml</template>
+			<template>dao/res.xml</template>
+		</category>
+		<category id="DB" text="切换数据源">
+			<template>db/mapping.xml</template>
+		</category>
+	</category>
+	<!-- java类型 -->
+	<javaType>
+		<dict id="String" text="String"/>
+		<dict id="Long" text="Long"/>
+		<dict id="Integer" text="Integer"/>
+		<dict id="BigDecimal" text="Double"/>
+		<dict id="Date" text="Date"/>
+	</javaType>
+	<!-- 查询类型 -->
+	<queryType>
+		<dict id="=" text="="/>
+		<dict id="!=" text="!="/>
+		<dict id="&gt;" text="&gt;"/>
+		<dict id="&gt;=" text="&gt;="/>
+		<dict id="&lt;" text="&lt;"/>
+		<dict id="&lt;=" text="&lt;="/>
+		<dict id="between" text="Between"/>
+		<dict id="like" text="Like"/>
+		<dict id="left_like" text="Left Like"/>
+		<dict id="right_like" text="Right Like"/>
+	</queryType>
+	<!-- 字段显示类型 -->
+	<showType>
+		<dict id="input" text="单行文本"/>
+		<dict id="textarea" text="多行文本"/>
+		<dict id="select" text="下拉选项"/>
+		<dict id="radiobox" text="单选按钮"/>
+		<dict id="checkbox" text="复选框"/>
+		<dict id="dateselect" text="日期选择"/>
+		<dict id="fileselect" text="文件上传选择"/>
+	</showType>
+	
+	<!-- Jdbc类型 -->
+	<jdbcType>
+		<dict id="VARCHAR" text="VARCHAR"/>
+		<dict id="TEXT" text="TEXT"/>
+		<dict id="DATETIME" text="DATETIME"/>
+		<dict id="DATE" text="DATE"/>
+		<dict id="BIGINT" text="BIGINT"/>
+		<dict id="INT" text="INT"/>
+		<dict id="DECIMAL" text="DECIMAL"/>
+	</jdbcType>
+	
+</config>

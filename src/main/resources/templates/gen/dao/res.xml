@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>datares</name>
+	<targetPath></targetPath>
+	<filePath>src/main/java/${packageName}/vo</filePath>
+	<fileName>${EntityName}Res.java</fileName>
+	<content><![CDATA[
+package ${packageName}.vo;
+
+import ${packageName}.entity.${EntityName};
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+
+/**
+ * @描述: ${table.comments}Res
+ * @Author: wocai
+ * @Date: ${.now?string["yyyy-MM-dd"]}
+ * @Version: V1.0
+ */
+@Data
+@ApiModel(value="${table.comments}", description="${table.comments}")
+public class ${EntityName}Res extends ${EntityName} {
+
+
+}]]>
+	</content>
+</template>
