@@ -6,8 +6,14 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && \
+    apt-get install -y docker-compose && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /workspaces
 # Verify Maven installation
-RUN mvn -version 
+# RUN mvn -version 
 
 # Install Gradle
 # RUN apt-get update && \
