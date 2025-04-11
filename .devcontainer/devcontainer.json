@@ -14,7 +14,7 @@
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "mvn clean install -DskipTests ; mvn clean install -DskipTests ; bash postCreate.sh",
-	// "postCreateCommand": " bash .devcontainer/postCreate.sh",
+	"postCreateCommand": " bash .devcontainer/postCreate.sh",
 	// "postCreateCommand": " mvn install",
 	// Configure tool-specific properties.
 	// "customizations": {},
