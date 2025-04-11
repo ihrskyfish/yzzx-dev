@@ -12,6 +12,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /workspaces
+
+RUN apt-get update && \
+    apt-get install -y mysql* && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 # Verify Maven installation
 # RUN mvn -version 
 
