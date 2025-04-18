@@ -1,0 +1,13 @@
+{
+  "storageType": "local",
+  "cachePolicy": {
+    "maxSizeMB": 100,
+    "evictionPolicy": "LRU"
+  },
+  "retentionDays": 30,
+  "backupEnabled": true,
+  "encryption": {
+    "enabled": false,
+    "algorithm": "AES"
+  }
+}
