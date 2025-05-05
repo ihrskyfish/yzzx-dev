@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "vmware.vscode-boot-dev-pack"
+        "vmware.vscode-boot-dev-pack",
+        "roonie007.hide-files"
     ]
 }

@@ -1,0 +1,53 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+    },
+    // "custom-auto-fold.rules": [
+    //     {
+    //         "fileGlob": "**/*.java", // Only auto fold files that match this file glob
+    //         "linePattern": "^import\\s", // Regex pattern for line to fold (can match any line within folding section)
+    //         "firstMatchOnly": false // Only fold the first matching line
+    //     },
+    //     // Can create multiple auto-fold rules
+    // ],
+    "custom-auto-fold.betweenCommandsDelay": 10, // ms delay between commands
+    "custom-auto-fold.delay": 250, // ms delay befo
+    "hide-files.files": [
+        "**/*.log",
+        "**/*.logs",
+        "**/*.svg",
+        "**/*.bcmap",
+        "**/*.vue",
+        "**/dto",
+        "**/test",
+        "**/entity",
+        "**/vo",
+        "**/impl",
+        "**/demo",
+        "**/utils",
+        "**/banner.txt",
+        "**/controller",
+        "**/config",
+        "**/README.md",
+        "**/.gitignore",
+        "lib",
+        ".vscode",
+        ".github",
+        "target",
+        ".cursor",
+        "**/application*.yml",
+        "**/enums",
+        "**/*.so",
+        "**/log",
+        "pom.xml"
+    ],
+    "java.compile.nullAnalysis.mode": "automatic",
+    "editor.tokenColorCustomizations": {
+        "comments": "",
+        "textMateRules": []
+    }
+}
