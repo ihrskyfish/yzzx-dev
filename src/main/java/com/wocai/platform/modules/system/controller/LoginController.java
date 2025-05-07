@@ -74,6 +74,7 @@ public class LoginController {
                 return result;
             } else {
                 String userpassword = PasswordUtil.encrypt(username, password.trim(), sysUser.getSalt());
+                log.info("userpassword is:"+userpassword) ;
                 String syspassword = sysUser.getPassword();
                 if (!syspassword.equals(userpassword)) {
                     result.error500("用户名或密码错误");
