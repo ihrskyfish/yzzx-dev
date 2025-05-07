@@ -12,6 +12,7 @@ target/libraries/
 lib
 .project
 
+scratch
 .metadata
 .recommenders
 .externalToolBuilders
