@@ -340,20 +340,6 @@ CREATE TABLE sys_user (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
 -- 创建表：sys_permission_data_rule
-CREATE TABLE sys_permission_data_rule (
-    id VARCHAR(36) NOT NULL COMMENT '主键ID',
-    permission_id VARCHAR(36) COMMENT '对应的菜单id',
-    rule_name VARCHAR(255) COMMENT '规则名称',
-    rule_column VARCHAR(255) COMMENT '字段',
-    rule_conditions VARCHAR(255) COMMENT '条件',
-    rule_value VARCHAR(255) COMMENT '规则值',
-    create_by VARCHAR(36) COMMENT '创建人',
-    create_time DATETIME COMMENT '创建时间',
-    update_by VARCHAR(36) COMMENT '更新人',
-    update_time DATETIME COMMENT '更新时间',
-    del_flag INT COMMENT '删除状态 0正常 1已删除',
-    PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='菜单权限规则表';
 
 -- 创建表：gen_table_column
 CREATE TABLE gen_table_column (
