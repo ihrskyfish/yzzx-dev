@@ -1,0 +1,49 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+	"name": "yzzx-dev Java",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	// "image": "mcr.microsoft.com/devcontainers/java:1-8-bullseye",
+	"dockerComposeFile": "./docker-compose.yml",
+	"service": "dev0app0backend",
+    // used by codespace
+	// "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	// "workspaceFolder": "/workspace/yzzx-dev",
+	// "features": {
+	// 	"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+	// },
+	"postCreateCommand": "echo 1111 ; bash  /postCreate.sh",
+	// this is user for when create container
+	"mounts": [
+		{
+			"source": "${env:HOME}/.m2/repository",
+			"target": "${localEnv:HOME}/.m2/repository",
+			"type": "bind"
+		},
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vmware.vscode-boot-dev-pack",
+				"saoudrizwan.claude-dev",
+				"vscjava.vscode-gradle",
+				"roonie007.hide-files",
+				"vscjava.vscode-java-pack",
+				"baincd.custom-auto-fold",
+				"chrisbibby.hide-git-ignored",
+				"cweijan.vscode-mysql-client2",
+				"ms-azuretools.vscode-docker",
+				"vmware.vscode-spring-boot",
+				"vscjava.vscode-java-debug"
+			]
+		}
+	},
+	"portsAttributes": {
+		"28080": {
+			"label": "main-port"
+		},
+		"35613": {
+			"label": "prac"
+		}
+	}
+}
