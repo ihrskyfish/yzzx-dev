@@ -11,4 +11,7 @@ git config --global user.email "ihr17867950748@126.com"
 git config --global user.name "ihrskyfish"
 # analyze the project
 tree  --noreport -a -I '*.bcmap|*.png|*.svg|*.vue|vo|dao|dto|entity|mapper|controller|demo|impl|service|util|utils|enums/|target/|*.log|.git/|.devcontainer/|.github/|lib/|.gitignore|.idea/|.vscode/|memory-bank/|*.so|job/|config/|servlet/|test/|application*.yml|banner.txt|LICENSE|README.md|tmp?.*' --prune
+mkdir -p  ~/.m2/repository/com/wocai
+cp ./lib/com/wocai/* ~/.m2/repository/com/wocai
 mvn spring-boot:run -Dspring.profiles.active=dev -DskipTests -Dmaven.test.skip=true
+sdk install java  8.0.452-amzn
